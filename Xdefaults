@@ -1,0 +1,18 @@
+URxvt*saveLines: 12000
+URxvt*foreground: White
+URxvt*background: #282c34
+URxvt*font: xft:hasklig:semibold:size=10
+URxvt*imFont: xft:hasklig:semibold:size=10
+URxvt*boldFont: xft:hasklig:bold:size=10
+URxvt*italicFont: xft:hasklig:italic:size=10
+URxvt*boldItalicFont: xft:hasklig:bold:italic:size=10
+URxvt*color4: RoyalBlue
+URxvt*color12: RoyalBlue
+URxvt*scrollBar: false
+URxvt*scrollBar_right: false
+URxvt*scrollstyle: rxvt
+
+Xft.dpi: 96
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.antialias: true
