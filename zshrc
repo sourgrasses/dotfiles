@@ -7,39 +7,7 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="spaceship"
-SPACESHIP_PROMPT_ORDER=(
-    user
-    host
-    dir
-    crystal
-    ocaml
-    rust
-    git
-    line_sep
-    char
-)
-SPACESHIP_RPROMPT_ORDER=(
-    time
-    exec_time
-)
-SPACESHIP_CHAR_SYMBOL="✨"
-SPACESHIP_PROMPT_ADD_NEWLINE=false
-SPACESHIP_TIME_SHOW=true
-SPACESHIP_TIME_PREFIX=""
-SPACESHIP_TIME_COLOR=132
-SPACESHIP_EXEC_TIME_SUFFIX=""
-SPACESHIP_EXEC_TIME_COLOR=117
-SPACESHIP_USER_SHOW=always
-SPACESHIP_USER_PREFIX=""
-SPACESHIP_USER_COLOR=099
-SPACESHIP_HOST_SHOW=always
-SPACESHIP_HOST_COLOR=099
-SPACESHIP_DIR_COLOR=072
-SPACESHIP_GIT_PREFIX="("
-SPACESHIP_GIT_SUFFIX=")"
-SPACESHIP_RUST_COLOR=132
-SPACESHIP_RUST_SYMBOL="🦀"
+ZSH_THEME="jena"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -68,10 +36,10 @@ SPACESHIP_RUST_SYMBOL="🦀"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+#COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -107,11 +75,13 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 export PATH="/home/jenn/.cargo/bin/:$PATH"
-export PATH="/home/jenn/.gem/ruby/2.6.0/bin:$PATH"
-export PATH="/home/jenn/.npm_global/bin:$PATH"
-export ALPACA_ROOT="/usr/local/lib/alpaca" 
+export PATH="/home/jenn/go/bin/:$PATH"
+export PATH="/home/jenn/.gem/ruby/2.6/bin/:$PATH"
+export PATH="/home/jenn/.local/share/ienv/bin/:$PATH"
+export PATH="/home/jenn/usr/bin/:$PATH"
+export MONITOR=$(polybar -m|tail -1|sed -e 's/:.*$//g')
+
 export TERM=xterm-256color
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -129,17 +99,7 @@ export TERM=xterm-256color
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim="nvim"
-alias external_on="xrandr --output HDMI-2 --auto --right-of eDP-1"
-alias external_off="xrandr --output HDMI-2 --off"
 
 # OPAM configuration
 . /home/jenn/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

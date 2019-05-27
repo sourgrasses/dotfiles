@@ -7,17 +7,16 @@
 ;
 ;=====================================================
 
-; to match base16-porple
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #292d3e
-background-alt = #65568a
+background = #262626
+background-alt = #262626
 ;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #c792ea
-secondary = #89ddff
-alert = #f08178
+foreground = #e4e4e4
+foreground-alt = #afafaf
+primary = #af005f
+secondary = #5f1c5f
+alert = #af005f
 
 [bar/jenn]
 monitor = ${env:MONITOR:}
@@ -43,14 +42,14 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "Rustlig:style=Semibold:pixelsize=11;1"
-;font-1 = "Rustlig:style=Semibold:pixelsize=11;1"
-font-1 = Nerd Font:style=Regular:pixelsize=11;2
+font-0 = "SauceCodePro NF:style=Semibold:pixelsize=11;1"
+font-1 = "SauceCodePro NF:style=Regular:pixelsize=11;2"
 font-2 = Weather Icons:style=Regular:pixelsize=12;1
+font-3 = "SauceCodePro NF:style=Regular:pixelsize=14;1"
 
 modules-left = i3
 modules-center = 
-modules-right = openweathermap-simple filesystem updates-arch-combined wlan eth date battery
+modules-right = openweathermap-simple filesystem wlan eth date battery
 
 ;tray-position = right
 ;tray-padding = 2
@@ -98,12 +97,11 @@ spacing = 2
 fixed-values = true
 
 mount-0 = /
-mount-1 = /home
 
-label-mounted = %{F#c792ea}%mountpoint%%{F-}: %free%
+label-mounted =  %free%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
-format-mounted-underline = #c792ea
+format-mounted-underline = #875f87
 
 [module/bspwm]
 type = internal/bspwm
@@ -129,6 +127,15 @@ type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
+label-font = 4
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
@@ -138,23 +145,23 @@ label-mode-foreground = #000
 label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
-label-focused = %index%
+label-focused = %icon%
 label-focused-background = ${module/bspwm.label-focused-background}
 label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %icon%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
-label-visible = %index%
+label-visible = %icon%
 label-visible-background = ${self.label-focused-background}
 label-visible-underline = ${self.label-focused-underline}
 label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
-label-urgent = %index%
+label-urgent = %icon%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
@@ -215,16 +222,16 @@ interface = wlp4s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #82aaff
+format-connected-underline = #5f87af
 label-connected = %essid%
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 
-format-disconnected =
+format-disconnected = 睊
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
@@ -253,12 +260,12 @@ interval = 5
 date = " %m/%d"
 date-alt = " %m/%d/%Y"
 
-time = %H:%M
-time-alt = %H:%M:%S
+time = %I:%M %p
+time-alt = %I:%M:%S %p
 
-format-prefix = 
+format-prefix = 
 format-prefix-font = 1
-format-underline = #c3e88d
+format-underline = #1c5f5f
 
 label = %date% %time%
 
@@ -296,25 +303,25 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-charging = <<ramp-capacity> animation-charging> <label-charging>
-format-charging-underline = #64878f
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #1c5f87
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
+format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 750
 
 [module/temperature]
@@ -367,23 +374,10 @@ menu-2-1-exec = menu-open-0
 
 [module/openweathermap-simple]
 type = custom/script
-exec = ~/.polybar_scripts/openweathermap-simple.sh
+exec = ~/.config/polybar/openweathermap-simple.sh
 interval = 600
-label-font = 0
-format-underline = #82aaff
-
-[module/updates-arch-combined]
-type = custom/script
-exec = ~/.polybar_scripts/updates-arch-combined.sh
-interval = 600
-format-underline = #f08178
-
-[module/until]
-type = custom/script
-exec = ~/.polybar_scripts/until -d 11-27-2018
-interval = 600
-format-underline = #9f78e1
-
+label-font = 3
+format-underline = #1c5f87
 
 [settings]
 screenchange-reload = true

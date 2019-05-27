@@ -1,30 +1,36 @@
 " plugins
 call plug#begin('~/.vim/plugged')
 Plug 'rust-lang/rust.vim'
-Plug 'neovimhaskell/haskell-vim'
+Plug 'fatih/vim-go'
 Plug 'rgrinberg/vim-ocaml'
-Plug 'fsharp/vim-fsharp'
-Plug 'manicmaniac/coconut.vim'
-Plug 'reasonml-editor/vim-reason-plus'
-Plug 'jordwalke/vim-reasonml'
 Plug 'elixir-lang/vim-elixir'
 Plug 'rhysd/vim-crystal'
-Plug 'peter-edge/vim-capnp'
 Plug 'ziglang/zig.vim'
-Plug 'lepoetemaudit/alpaca_vim'
-Plug 'lpil/gleam.vim'
+Plug 'https://gitlab.com/inko-lang/inko.vim.git'
 
 Plug 'w0rp/ale'
 
 Plug 'https://github.com/junegunn/rainbow_parentheses.vim'
-Plug 'Shougo/denite.nvim'
 Plug 'bling/vim-bufferline'
 Plug 'machakann/vim-highlightedyank'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'lilydjwg/colorizer'
+Plug 'AlessandroYorba/Arcadia'
+Plug 'AlessandroYorba/Sierra'
 call plug#end()
+
+syntax on
+let g:arcadia_Sunset = 1
+colorscheme arcadia
+set termguicolors
+
+" airline theme stuff
+let g:airline_theme = 'violet'
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep = '●●●●'
+let g:airline_right_sep = '●●●●'
 
 set backspace=2
 
@@ -32,22 +38,26 @@ let &t_Co=256
 
 set nu
 
-set tabstop=4       " The width of a TAB is set to 4.
-                    " Still it is a \t. It is just that
-                    " Vim will interpret it to be having
-                    " a width of 4.
+set tabstop=4       " set tab width to 4
 
-set shiftwidth=4    " Indents will have a width of 4
+set shiftwidth=4    " set indent width to 4
 
-set softtabstop=4   " Sets the number of columns for a TAB
+set softtabstop=4
 
-set expandtab       " Expand TABs to spaces
+set expandtab       " Expand tabs to spaces!!
 
-" set tabs to 2 spaces for crystal and ocaml
+set undodir=~/.vim/undos
+set undofile
+
+" set tabs to 2 spaces for crystal, ocaml, and ruby
 :autocmd Filetype crystal setlocal ts=2 sw=2 expandtab
 :autocmd Filetype ocaml setlocal ts=2 sw=2 expandtab
-:autocmd Filetype reason setlocal ts=2 sw=2 expandtab
 :autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+
+" override some go defaults about autosaving and 
+" not expanding tabs to spaces
+let g:go_fmt_autosave = 0
+:autocmd Filetype go setlocal expandtab
 
 let g:zig_fmt_autosave = 1
 :autocmd Filetype zig setlocal smartindent nocindent
@@ -74,19 +84,6 @@ else
 endif
 :autocmd InsertEnter * set cul
 :autocmd InsertLeave * set nocul
-
-syntax on
-"colorscheme base16-material-palenight
-colorscheme onesoft
-"let g:material_theme_style = 'palenight'
-set termguicolors
-set background=dark
-
-" airline stuff
-let g:airline_theme = 'violet'
-let g:airline_powerline_fonts = 1
-let g:airline_left_sep = '●●●●'
-let g:airline_right_sep = '●●●●'
 
 " linter
 let g:ale_sign_column_always = 1
@@ -123,7 +120,7 @@ let g:ale_set_highlights = 0
 let g:rainbow#pairs = [['{', '}'], ['(', ')']]
 augroup rainbow_rust
     autocmd!
-    autocmd FileType c,rust,erlang,haskell,ocaml,reason,zig RainbowParentheses
+    autocmd FileType c,rust,erlang,go,inko,ocaml,reason,zig RainbowParentheses
 augroup END
 " ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
 let s:opam_share_dir = system("opam config var share")
