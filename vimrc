@@ -7,6 +7,7 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'rhysd/vim-crystal'
 Plug 'ziglang/zig.vim'
 Plug 'https://gitlab.com/inko-lang/inko.vim.git'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 Plug 'w0rp/ale'
 
@@ -25,6 +26,8 @@ syntax on
 let g:arcadia_Sunset = 1
 colorscheme arcadia
 set termguicolors
+
+let g:semanticTermColors = [28,1,2,3,4,5,6,7,25,9,10,34,12,13,14,15,16,125,124,19]
 
 " airline theme stuff
 let g:airline_theme = 'violet'
