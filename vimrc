@@ -7,9 +7,11 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'rhysd/vim-crystal'
 Plug 'ziglang/zig.vim'
 Plug 'https://gitlab.com/inko-lang/inko.vim.git'
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 Plug 'w0rp/ale'
+Plug 'arakashic/chromatica.nvim'
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+Plug 'nvie/vim-flake8'
 
 Plug 'https://github.com/junegunn/rainbow_parentheses.vim'
 Plug 'bling/vim-bufferline'
@@ -26,8 +28,6 @@ syntax on
 let g:arcadia_Sunset = 1
 colorscheme arcadia
 set termguicolors
-
-let g:semanticTermColors = [28,1,2,3,4,5,6,7,25,9,10,34,12,13,14,15,16,125,124,19]
 
 " airline theme stuff
 let g:airline_theme = 'violet'
@@ -52,10 +52,26 @@ set expandtab       " Expand tabs to spaces!!
 set undodir=~/.vim/undos
 set undofile
 
+function SemshiHighlights()
+    hi semshiAttribute          ctermfg=30 guifg=#008787
+    hi semshiBuiltin            ctermfg=67 guifg=#5f87af cterm=bold gui=bold
+    hi semshiFree               ctermfg=125 guifg=#af005f
+    hi semshiGlobal             ctermfg=96 guifg=#875f87
+    hi semshiImported           ctermfg=132 guifg=#afafd7
+    hi semshiParameter          ctermfg=132 guifg=#af5f87
+    hi semshiParameterUnused    ctermfg=117 guifg=#af5f87 cterm=underline gui=underline
+    hi semshiSelected           ctermbg=167 guibg=#d75f5f ctermfg=188 guifg=#262626
+    hi semshiSelf               ctermfg=208 guifg=#ff8700
+    hi semshiUnresolved         ctermfg=196 guifg=#ff0000 cterm=underline gui=underline
+endfunction
+
 " set tabs to 2 spaces for crystal, ocaml, and ruby
 :autocmd Filetype crystal setlocal ts=2 sw=2 expandtab
 :autocmd Filetype ocaml setlocal ts=2 sw=2 expandtab
 :autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+
+" call custom highlights for semshi
+:autocmd Filetype python call SemshiHighlights()
 
 " override some go defaults about autosaving and 
 " not expanding tabs to spaces
@@ -100,30 +116,10 @@ let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '➔'
 let g:ale_set_highlights = 0
 
-" language client settings
-"set hidden
-"
-"let g:LanguageClient_serverCommands = {
-"    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-"    \ }
-"let g:LanguageClient_autoStart = 1
-"nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-"nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-"
-"" Completion
-"autocmd BufEnter * call ncm2#enable_for_buffer()
-"set completeopt=noinsert,menuone,noselect
-"" tab to select
-"" and don't hijack my enter key
-"inoremap <expr><Tab> (pumvisible()?(empty(v:completed_item)?"\<C-n>":"\<C-y>"):"\<Tab>")
-"inoremap <expr><CR> (pumvisible()?(empty(v:completed_item)?"\<CR>\<CR>":"\<C-y>"):"\<CR>")
-
-" auto turn on rainbow-parentheses for brackets and parentheses in
-" rust, erlang, and ocaml/reason
 let g:rainbow#pairs = [['{', '}'], ['(', ')']]
 augroup rainbow_rust
     autocmd!
-    autocmd FileType c,rust,erlang,go,inko,ocaml,reason,zig RainbowParentheses
+    autocmd FileType c,rust,go,inko,ocaml,zig RainbowParentheses
 augroup END
 " ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
 let s:opam_share_dir = system("opam config var share")
