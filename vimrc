@@ -1,5 +1,6 @@
 " plugins
 call plug#begin('~/.vim/plugged')
+" syntax
 Plug 'rust-lang/rust.vim'
 Plug 'fatih/vim-go'
 Plug 'rgrinberg/vim-ocaml'
@@ -7,21 +8,29 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'rhysd/vim-crystal'
 Plug 'ziglang/zig.vim'
 Plug 'https://gitlab.com/inko-lang/inko.vim.git'
+Plug 'manicmaniac/coconut.vim'
 
+" linting/semantic highlighting
 Plug 'w0rp/ale'
 Plug 'arakashic/chromatica.nvim'
+Plug 'jaxbot/semantic-highlight.vim'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'nvie/vim-flake8'
 
-Plug 'https://github.com/junegunn/rainbow_parentheses.vim'
+" ui stuff
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'bling/vim-bufferline'
 Plug 'machakann/vim-highlightedyank'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'lilydjwg/colorizer'
+Plug 'RRethy/vim-hexokinase'
 Plug 'AlessandroYorba/Arcadia'
 Plug 'AlessandroYorba/Sierra'
+
+" ~practical~ plugins
+Plug 'tpope/vim-vinegar'
+Plug 'jremmen/vim-ripgrep'
 call plug#end()
 
 syntax on
@@ -37,6 +46,8 @@ let g:airline_right_sep = '●●●●'
 
 set backspace=2
 
+set splitbelow      " set new horizontal splits to open below
+
 let &t_Co=256
 
 set nu
@@ -48,6 +59,11 @@ set shiftwidth=4    " set indent width to 4
 set softtabstop=4
 
 set expandtab       " Expand tabs to spaces!!
+
+" set tabs to 2 spaces for crystal, ocaml, and ruby
+:autocmd Filetype crystal setlocal ts=2 sw=2 expandtab
+:autocmd Filetype ocaml setlocal ts=2 sw=2 expandtab
+:autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
 set undodir=~/.vim/undos
 set undofile
@@ -65,13 +81,16 @@ function SemshiHighlights()
     hi semshiUnresolved         ctermfg=196 guifg=#ff0000 cterm=underline gui=underline
 endfunction
 
-" set tabs to 2 spaces for crystal, ocaml, and ruby
-:autocmd Filetype crystal setlocal ts=2 sw=2 expandtab
-:autocmd Filetype ocaml setlocal ts=2 sw=2 expandtab
-:autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+" tell hexokinase to put the color swatch after the hex
+let g:Hexokinase_highlighters = ['virtual']
 
 " call custom highlights for semshi
 :autocmd Filetype python call SemshiHighlights()
+
+" netrw/vinegar configuration
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 1
+let g:netrw_winsize = 25
 
 " override some go defaults about autosaving and 
 " not expanding tabs to spaces
@@ -89,9 +108,10 @@ let g:indentLine_leadingSpaceEnabled = 1
 let g:indentLine_leadingSpaceChar = '·'
 set list
 
-set splitbelow      " set new horizontal splits to open below
-
 set mouse=a         " enable mouse integration stuff
+
+" set ripgrep to 'smart case mode'
+let g:rg_command = 'rg --vimgrep -S'
 
 " tmux stuff
 if exists('$TMUX')
@@ -116,11 +136,10 @@ let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '➔'
 let g:ale_set_highlights = 0
 
-let g:rainbow#pairs = [['{', '}'], ['(', ')']]
-augroup rainbow_rust
-    autocmd!
-    autocmd FileType c,rust,go,inko,ocaml,zig RainbowParentheses
-augroup END
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 " ## added by OPAM user-setup for vim / base ## 93ee63e278bdfc07d1139a748ed3fff2 ## you can edit, but keep this line
 let s:opam_share_dir = system("opam config var share")
 let s:opam_share_dir = substitute(s:opam_share_dir, '[\r\n]*$', '', '')
