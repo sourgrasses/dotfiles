@@ -29,6 +29,7 @@ Plug 'AlessandroYorba/Arcadia'
 Plug 'AlessandroYorba/Sierra'
 
 " ~practical~ plugins
+Plug 'igankevich/mesonic'
 Plug 'tpope/vim-vinegar'
 Plug 'jremmen/vim-ripgrep'
 call plug#end()
