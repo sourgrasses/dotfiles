@@ -9,6 +9,7 @@ Plug 'rhysd/vim-crystal'
 Plug 'ziglang/zig.vim'
 Plug 'https://gitlab.com/inko-lang/inko.vim.git'
 Plug 'manicmaniac/coconut.vim'
+Plug 'zah/nim.vim'
 
 " linting/semantic highlighting
 Plug 'w0rp/ale'
@@ -16,6 +17,16 @@ Plug 'arakashic/chromatica.nvim'
 Plug 'jaxbot/semantic-highlight.vim'
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'nvie/vim-flake8'
+
+" completion
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'junegunn/fzf'
+Plug 'davidhalter/jedi-vim'
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 
 " ui stuff
 Plug 'kien/rainbow_parentheses.vim'
@@ -46,20 +57,17 @@ let g:airline_left_sep = '●●●●'
 let g:airline_right_sep = '●●●●'
 
 set backspace=2
+set nu
+set tabstop=4       " set tab width to 4
+set shiftwidth=4    " set indent width to 4
+set softtabstop=4
+set expandtab       " Expand tabs to spaces!!
+set modelines=0
+set nomodeline
 
 set splitbelow      " set new horizontal splits to open below
 
 let &t_Co=256
-
-set nu
-
-set tabstop=4       " set tab width to 4
-
-set shiftwidth=4    " set indent width to 4
-
-set softtabstop=4
-
-set expandtab       " Expand tabs to spaces!!
 
 " set tabs to 2 spaces for crystal, ocaml, and ruby
 :autocmd Filetype crystal setlocal ts=2 sw=2 expandtab
@@ -68,6 +76,14 @@ set expandtab       " Expand tabs to spaces!!
 
 set undodir=~/.vim/undos
 set undofile
+
+" completion configuration
+let g:deoplete#enable_at_startup = 1
+let g:LanguageClient_serverCommands = {
+    \ 'python': ['pyls'],
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'] }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 function SemshiHighlights()
     hi semshiAttribute          ctermfg=30 guifg=#008787
