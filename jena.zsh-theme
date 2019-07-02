@@ -19,7 +19,7 @@ num_dirs=2 # Use 0 for full path
 truncated_path="%F{white}%$num_dirs~%f"
 decoration="%{$fg_bold[red]%}%{$fg_bold[magenta]%}%{$fg_bold[cyan]%}%f"
 background_jobs="%(1j.%F{green} %f.)"
-non_zero_return_value="%(0?..%F{yellow}  %f)"
+non_zero_return_value="%(0?..%F{magenta}  %f)"
 
 # get python env stuff if it exists
 function _python_venv() {
