@@ -21,6 +21,12 @@ decoration="%{$fg_bold[red]%}%{$fg_bold[magenta]%}%{$fg_bold[cyan]%}%f"
 background_jobs="%(1j.%F{green} %f.)"
 non_zero_return_value="%(0?..%F{magenta}  %f)"
 
+function _ssh_env() {
+  if [[ -n "$SSH_CLIENT"  ||  -n "$SSH2_CLIENT" ]]; then
+    echo " %{$fg_bold[red]%}(%M)%f"
+  fi
+}
+
 # get python env stuff if it exists
 function _python_venv() {
   if [[ $VIRTUAL_ENV != "" ]]; then
@@ -28,7 +34,7 @@ function _python_venv() {
     env_long=${VIRTUAL_ENV##*/}
     env=("${(@s/-/)env_long}")
 
-    echo "%{$fg[blue]%}($env[1])%{$reset_color%} "
+    echo " %{$fg[blue]%}($env[1])%{$reset_color%} "
   fi
 }
 
@@ -41,6 +47,6 @@ function _git_info() {
 # Left part of prompt
 PROMPT='$truncated_path $decoration '
 # Right part of prompt
-RPROMPT='$(_git_info) $(_python_venv) $non_zero_return_value'
+RPROMPT='$(_git_info)$(_python_venv)$(_ssh_env)$non_zero_return_value'
 # Input in bold
 zle_highlight=(default:bold)
