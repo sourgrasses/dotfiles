@@ -38,8 +38,8 @@ set termguicolors
 " airline theme stuff
 let g:airline_theme = 'cosme'
 let g:airline_powerline_fonts = 1
-let g:airline_left_sep = '●●●●'
-let g:airline_right_sep = '●●●●'
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 
 set backspace=2
 set nu
@@ -125,14 +125,14 @@ au Syntax * RainbowParenthesesLoadBraces
 let g:rbpt_colorpairs = [
     \ ['brown',       '#ffaf87'],
     \ ['Darkblue',    '#5f87af'],
-    \ ['darkgray',    '#444444'],
+    \ ['darkgray',    '#8a8a8a'],
     \ ['darkgreen',   '#afffd7'],
     \ ['darkcyan',    '#a3a6ff'],
     \ ['darkred',     '#ff7878'],
     \ ['darkmagenta', '#ffc8e3'],
     \ ['brown',       '#ffaf87'],
-    \ ['gray',        '#444444'],
-    \ ['black',       '#303030'],
+    \ ['gray',        '#8a8a8a'],
+    \ ['black',       '#8a8a8a'],
     \ ['darkmagenta', '#ffc8e3'],
     \ ['Darkblue',    '#5f87af'],
     \ ['darkgreen',   '#afffd7'],
