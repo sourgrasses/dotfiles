@@ -9,14 +9,14 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #262626
-background-alt = #262626
+background = #303030
+background-alt = #303030
 ;foreground = ${xrdb:color7:#222}
 foreground = #e4e4e4
 foreground-alt = #afafaf
-primary = #af005f
-secondary = #5f1c5f
-alert = #af005f
+primary = #f082b9
+secondary = #afafd7
+alert = #ffaf87
 
 [bar/jenn]
 monitor = ${env:MONITOR:}
@@ -49,7 +49,7 @@ font-3 = "SauceCodePro NF:style=Regular:pixelsize=14;1"
 
 modules-left = i3
 modules-center = 
-modules-right = openweathermap-simple filesystem wlan eth date battery
+modules-right = openweathermap-simple filesystem eth date
 
 ;tray-position = right
 ;tray-padding = 2
@@ -101,7 +101,7 @@ mount-0 = /
 label-mounted =  %free%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
-format-mounted-underline = #875f87
+format-mounted-underline = #ffaf87
 
 [module/bspwm]
 type = internal/bspwm
@@ -131,7 +131,7 @@ label-font = 4
 
 ws-icon-0 = 1;
 ws-icon-1 = 2;
-ws-icon-2 = 3;
+ws-icon-2 = 3;歷
 ws-icon-3 = 4;
 ws-icon-4 = 5;
 ws-icon-5 = 6;
@@ -222,7 +222,7 @@ interface = wlp4s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #5f87af
+format-connected-underline = #afffd7
 label-connected = %essid%
 
 ramp-signal-0 = 
@@ -239,11 +239,11 @@ format-disconnected = 睊
 
 [module/eth]
 type = internal/network
-interface = enp0s31f6
+interface = eno1
 interval = 3.0
 
-format-connected-underline = #55aa55
-format-connected-prefix = " "
+format-connected-underline = #afffd7
+format-connected-prefix = "ﯱ "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
 
@@ -265,7 +265,7 @@ time-alt = %I:%M:%S %p
 
 format-prefix = 
 format-prefix-font = 1
-format-underline = #1c5f5f
+format-underline = #afd7ff
 
 label = %date% %time%
 
@@ -304,7 +304,7 @@ adapter = AC
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #1c5f87
+format-charging-underline = #f082b9
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
@@ -377,7 +377,7 @@ type = custom/script
 exec = ~/.config/polybar/openweathermap-simple.sh
 interval = 600
 label-font = 3
-format-underline = #1c5f87
+format-underline = #f082b9
 
 [settings]
 screenchange-reload = true
