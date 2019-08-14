@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/jenn/.oh-my-zsh"
+  export ZSH="/home/jawheeler/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -63,7 +63,9 @@ ZSH_THEME="jena"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     cargo
+    python
     git
+    golang
     rust
     vi-mode
     zsh-autosuggestions
@@ -74,32 +76,28 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/home/jenn/.cargo/bin/:$PATH"
-export PATH="/home/jenn/go/bin/:$PATH"
-export PATH="/home/jenn/.gem/ruby/2.6/bin/:$PATH"
-export PATH="/home/jenn/.local/share/ienv/bin/:$PATH"
-export PATH="/home/jenn/usr/bin/:$PATH"
+export PYTHONUSERBASE="/home/jawheeler/.pips"
+
+# export path to Oracle libs for cx-oracle pip package
+export LD_LIBRARY_PATH=/opt/oracle/instantclient_19_3:$LD_LIBRARY_PATH
+
+export EDITOR='nvim'
+
+export GOPATH="/home/jawheeler/go"
+
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.pips/bin:$PATH"
+export PATH="$HOME/.poetry/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.gem/ruby/2.6.0/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+
 export MONITOR=$(polybar -m|tail -1|sed -e 's/:.*$//g')
 
 export TERM=xterm-256color
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export VIRTUAL_ENV_DISABLE_PROMPT=true
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+eval "$(pyenv init -)"
 
 alias vim="nvim"
-
-# OPAM configuration
-. /home/jenn/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
