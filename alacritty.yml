@@ -51,8 +51,8 @@ window:
   #     - buttonless: Title bar, transparent background, but no title bar buttons
   decorations: none
 
-  # When true, alacritty starts maximized.
-  start_maximized: false
+  # start in maximized mode
+  # startup_mode: Maximized
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -102,8 +102,8 @@ font:
     style: Semibold Italic
 
   # Point size
-  size: 5.5
-  #size: 8.0
+  #size: 5.5
+  size: 8.5
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -135,10 +135,10 @@ font:
   use_thin_strokes: true
 
 # Display the time it takes to redraw each frame.
-render_timer: false
+debug.render_timer: false
 
 # Keep the log file after quitting Alacritty.
-persistent_logging: false
+debug.persistent_logging: false
 
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
@@ -147,7 +147,7 @@ draw_bold_text_with_bright_colors: true
 colors:
   # Default colors
   primary:
-    background: '0x262626'
+    background: '0x303030'
     foreground: '0xe4e4e4'
 
     # Bright and dim foreground colors
@@ -177,24 +177,24 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x262626'
-    red:     '0xaf005f'
-    green:   '0x1c5f5f'
-    yellow:  '0xaf871c'
-    blue:    '0x1c5f87'
-    magenta: '0x5f1c5f'
-    cyan:    '0x004f87'
+    black:   '0x303030'
+    red:     '0xf082b9'
+    green:   '0x87ffdf'
+    yellow:  '0xd7b7af'
+    blue:    '0x8787f0'
+    magenta: '0xb28ab2'
+    cyan:    '0x879ef0'
     white:   '0xafafaf'
 
   # Bright colors
   bright:
     black:   '0x6c6c6c'
-    red:     '0xaf5f87'
-    green:   '0x008787'
-    yellow:  '0xdfaf00'
-    blue:    '0x5f87af'
-    magenta: '0x875f87'
-    cyan:    '0x0087af'
+    red:     '0xffafd7'
+    green:   '0x72f089'
+    yellow:  '0xffaf87'
+    blue:    '0xafd7ff'
+    magenta: '0xc2a8e1'
+    cyan:    '0xa3b4f2'
     white:   '0xe4e4e4'
 
   # Dim colors
