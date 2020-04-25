@@ -3,13 +3,10 @@ call plug#begin('~/.vim/plugged')
 " syntax
 Plug 'rust-lang/rust.vim'
 Plug 'arp242/gopher.vim'
-Plug 'elixir-editors/vim-elixir'
 Plug 'rgrinberg/vim-ocaml'
 Plug 'rhysd/vim-crystal'
 Plug 'ziglang/zig.vim'
-Plug 'https://gitlab.com/inko-lang/inko.vim.git'
 Plug 'ARM9/arm-syntax-vim'
-Plug 'zah/nim.vim'
 
 " linting/semantic highlighting
 Plug 'w0rp/ale'
@@ -24,8 +21,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
-Plug 'chrisbra/Colorizer'
-"Plug 'AlessandroYorba/Arcadia'
+Plug 'sainnhe/edge'
 
 " ~practical~ plugins
 Plug 'igankevich/mesonic'
@@ -34,12 +30,17 @@ Plug 'jremmen/vim-ripgrep'
 call plug#end()
 
 syntax on
-let g:arcadia_Sunset = 1
-colorscheme cosme
+
 set termguicolors
+set background=dark
+
+let g:edge_style = 'aura'
+let g:edge_disable_italic_comment = 1
+" let g:arcadia_Sunset = 1
+colorscheme edge
 
 " airline theme stuff
-let g:airline_theme = 'cosme'
+let g:airline_theme = 'edge'
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
@@ -62,6 +63,9 @@ let &t_Co=256
 :autocmd Filetype ocaml setlocal ts=2 sw=2 expandtab
 :autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
 
+" use pyenv python 3 version
+let g:python3_host_prog = "/Users/jawheeler/.pyenv/shims/python"
+
 " use ARM syntax for asm files
 au BufNewFile,BufRead *.s,*.S set filetype=arm
 
@@ -70,6 +74,7 @@ set undofile
 
 " nerdtree stuff
 map <C-n> :NERDTreeToggle<CR>
+let g:indentLine_fileTypeExclude = ["nerdtree"]
 
 function SemshiHighlights()
     hi semshiAttribute          ctermfg=30 guifg=#008787
@@ -77,8 +82,8 @@ function SemshiHighlights()
     hi semshiFree               ctermfg=125 guifg=#af005f
     hi semshiGlobal             ctermfg=96 guifg=#875f87
     hi semshiImported           ctermfg=132 guifg=#afafd7
-    hi semshiParameter          ctermfg=132 guifg=#f082b9
-    hi semshiParameterUnused    ctermfg=117 guifg=#f082b9 cterm=underline gui=underline
+    hi semshiParameter          ctermfg=132 guifg=#af5f87
+    hi semshiParameterUnused    ctermfg=117 guifg=#af5f87 cterm=underline gui=underline
     hi semshiSelected           ctermbg=167 guibg=#d75f5f ctermfg=188 guifg=#262626
     hi semshiSelf               ctermfg=208 guifg=#ff8700
     hi semshiUnresolved         ctermfg=196 guifg=#ff0000 cterm=underline gui=underline
