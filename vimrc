@@ -64,6 +64,9 @@ let g:edge_style = 'aura'
 let g:edge_disable_italic_comment = 1
 colorscheme edge
 
+" let it be transparent on wayland
+hi Normal guibg=NONE
+
 " use ARM syntax for asm files
 au BufNewFile,BufRead *.s,*.S set filetype=arm
 
