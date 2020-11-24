@@ -5,8 +5,10 @@ Plug 'ARM9/arm-syntax-vim'
 Plug 'rhysd/vim-crystal'
 Plug 'fatih/vim-go'
 Plug 'rgrinberg/vim-ocaml'
+Plug 'rodjek/vim-puppet'
 Plug 'rust-lang/rust.vim'
 Plug 'ziglang/zig.vim'
+Plug 'mrk21/yaml-vim'
 
 " linting/semantic highlighting
 Plug 'w0rp/ale'
@@ -15,7 +17,8 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " ui stuff
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-bufferline'
 Plug 'machakann/vim-highlightedyank'
 Plug 'Yggdroot/indentLine'
@@ -23,10 +26,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'kien/rainbow_parentheses.vim'
 
 " colorscheme
-Plug 'sainnhe/edge'
+Plug 'joshdick/onedark.vim'
 
 " ~practical~ plugins
-Plug 'igankevich/mesonic'
 Plug 'jremmen/vim-ripgrep'
 call plug#end()
 
@@ -34,6 +36,10 @@ syntax on
 
 set termguicolors
 set background=dark
+
+colorscheme onedark
+
+hi! Normal ctermbg=NONE guibg=NONE
 
 set backspace=2
 set nu
@@ -46,10 +52,11 @@ set nomodeline
 
 set mouse=a         " enable mouse integration stuff
 
-" set tabs to 2 spaces for crystal, ocaml, and ruby
+" set tabs to 2 spaces for crystal, ocaml, ruby, and yaml
 :autocmd Filetype crystal setlocal ts=2 sw=2 expandtab
 :autocmd Filetype ocaml setlocal ts=2 sw=2 expandtab
 :autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+:autocmd Filetype yaml setlocal ts=2 sw=2 expandtab
 
 set splitbelow      " set new horizontal splits to open below
 
@@ -58,14 +65,6 @@ let &t_Co=256
 " keep an undo history after exit
 set undodir=~/.vim/undos
 set undofile
-
-" colorscheme config
-let g:edge_style = 'aura'
-let g:edge_disable_italic_comment = 1
-colorscheme edge
-
-" let it be transparent on wayland
-hi Normal guibg=NONE
 
 " use ARM syntax for asm files
 au BufNewFile,BufRead *.s,*.S set filetype=arm
@@ -79,21 +78,20 @@ let g:go_highlight_methods = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_types = 1
-let g:go_auto_sameids = 1
 
 " use pyenv python 3 version from pyenv
 let g:python3_host_prog = "$HOME/.pyenv/shims/python"
-"let g:python3_host_prog = "/usr/local/bin/python3"
+" let g:python3_host_prog = "/usr/local/bin/python3"
 
 " run zigfmt on save
 let g:zig_fmt_autosave = 1
 :autocmd Filetype zig setlocal smartindent nocindent
 
 " airline theme stuff
-let g:airline_theme = 'edge'
+let g:airline_theme = 'onedark'
 let g:airline_powerline_fonts = 1
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
+let g:airline_left_sep = '✿✿✿✿'
+let g:airline_right_sep = '✿✿✿✿'
 
 " ale configuration
 let g:ale_linters = {
@@ -110,7 +108,7 @@ let g:ale_sign_warning = '➔'
 let g:ale_set_highlights = 0
 " rust-specific ale stuff
 let g:ale_rust_cargo_use_check = 1
-let g:ale_rust_cargo_check_all_targets = 1
+let g:ale_rust_cargo_check_all_targets = 0
 
 " configure indentline stuff
 let g:indentLine_enabled = 0
