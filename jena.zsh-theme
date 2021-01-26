@@ -39,9 +39,15 @@ function _git_info() {
     fi
 }
 
+function _ssh_env() {
+    if [[ $SSH_TTY ]]; then
+        echo " %{$fg[red]%}($(hostname))"
+    fi
+}
+
 # Left part of prompt
 PROMPT='$truncated_path $decoration '
 # Right part of prompt
-RPROMPT='$(_git_info) $(_python_venv) $non_zero_return_value'
+RPROMPT='$(_git_info)$(_python_venv)$(_ssh_env)$non_zero_return_value'
 # Input in bold
 zle_highlight=(default:bold)
