@@ -3,12 +3,15 @@ call plug#begin('~/.vim/plugged')
 " syntax
 Plug 'ARM9/arm-syntax-vim'
 Plug 'rhysd/vim-crystal'
+Plug 'elixir-editors/vim-elixir'
 Plug 'fatih/vim-go'
+Plug 'mtdl9/vim-log-highlighting'
 Plug 'rgrinberg/vim-ocaml'
 Plug 'rodjek/vim-puppet'
 Plug 'rust-lang/rust.vim'
-Plug 'ziglang/zig.vim'
+Plug 'jez/vim-better-sml'
 Plug 'mrk21/yaml-vim'
+Plug 'ziglang/zig.vim'
 
 " linting/semantic highlighting
 Plug 'w0rp/ale'
