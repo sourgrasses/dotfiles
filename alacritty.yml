@@ -18,8 +18,8 @@ window:
   # Specified in number of columns/lines, not pixels.
   # If both are `0`, this setting is ignored.
   dimensions:
-    columns: 0
-    lines: 0
+    columns: 326
+    lines: 80
 
   # Window position (changes require restart)
   #
@@ -103,7 +103,7 @@ font:
 
   # Point size
   #size: 5.5
-  size: 8.5
+  size: 11
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -147,7 +147,7 @@ draw_bold_text_with_bright_colors: true
 colors:
   # Default colors
   primary:
-    background: '0x303030'
+    background: '0x2b2d37'
     foreground: '0xe4e4e4'
 
     # Bright and dim foreground colors
@@ -177,7 +177,7 @@ colors:
 
   # Normal colors
   normal:
-    black:   '0x303030'
+    black:   '0x2b2d37'
     red:     '0xf082b9'
     green:   '0x87ffdf'
     yellow:  '0xd7b7af'
@@ -337,7 +337,8 @@ live_config_reload: true
 #   - (Linux/macOS) /bin/bash --login
 #   - (Windows) powershell
 shell:
-  program: /usr/bin/fish
+  program: /usr/local/bin/fish
+
 
   # Windows 10 ConPTY backend (Windows only)
 #
